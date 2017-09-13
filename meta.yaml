@@ -1,0 +1,20 @@
+package:
+  name: repoman
+  version: '0.2'
+
+source:
+  git_url: https://github.com/fermi-lat/repoman.git
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - click
+    - git
+    - gitpython
+
+  run:
+    - python
+    - click
+    - git
+    - gitpython
