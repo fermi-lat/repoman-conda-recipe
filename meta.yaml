@@ -1,20 +1,68 @@
 package:
-  name: repoman
-  version: '0.2'
+  name: fermi-repoman
+  version: "0.2.2"
 
 source:
-  git_url: https://github.com/fermi-lat/repoman.git
+  fn: fermi-repoman-0.2.2.tar.gz
+  url: https://pypi.python.org/packages/19/7d/96c27dec53b749128de98bd107b2db837565c959b2a1a29106491dea9d84/fermi-repoman-0.2.2.tar.gz
+  md5: 8ea85bf360a58f9ad8878d5a0acdaaba
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # noarch: python
+  # preserve_egg_dir: True
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - fermi-repoman = fermi-repoman:main
+    #
+    # Would create an entry point called fermi-repoman that calls fermi-repoman.main()
+
+    - repoman = repoman.cli:cli
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
 
 requirements:
   build:
     - python
     - setuptools
-    - click
-    - git
     - gitpython
+    - click
 
   run:
     - python
-    - click
-    - git
     - gitpython
+    - click
+
+test:
+  # Python imports
+  imports:
+    - repoman
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - repoman --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://github.com/fermi-lat/repoman
+  license: Modified BSD
+  summary: 'A collection of utilities for managing individual software packages for the Fermi Gamma-Ray Space telescope'
+  license_family: BSD
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
