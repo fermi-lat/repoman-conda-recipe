@@ -1,0 +1,47 @@
+{% set name = "fermi-repoman" %}
+{% set version = "0.2.8" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: "12ac546b44565a4429eab0307eb575167450bdc8f0f760dc60615454eb13c780"
+
+build:
+  number: 0
+  entry_points:
+    - repoman = repoman.cli:cli
+  noarch: "python"
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - click
+    - gitpython
+    - pip
+    - python
+  run:
+    - click
+    - gitpython
+    - python
+
+test:
+  imports:
+    - repoman
+  commands:
+    - repoman --help
+
+about:
+  home: "http://github.com/fermi-lat/repoman"
+  license: "Modified BSD"
+  license_family: "BSD"
+  license_file: ""
+  summary: "A collection of utilities for managing individual software packages for the Fermi Gamma-Ray Space telescope"
+  doc_url: ""
+  dev_url: ""
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
